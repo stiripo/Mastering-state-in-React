@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ALL_FEEDBACK } from "./constants";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleVisibility } from '../src/redux/visibility';
+import { fetchThunk } from "./redux/community";
 
 export function BigCommunity() {
 
-    const [visibility, setVisibility] = useState('open');
-
-    function toggleVisibility() {
-        visibility === 'open' ? setVisibility('hidden') : setVisibility('open');
-        return visibility;
-    }
+    const dispatch = useDispatch();
+    const visibility = useSelector(state => state.communitySectionVisibility);
 
     return (
         <>
@@ -17,7 +15,7 @@ export function BigCommunity() {
                 type='button'
                 className="visibility-button"
                 value={visibility === 'open' ? 'Hide section' : 'Show section'}
-                onClick={toggleVisibility}
+                onClick={() => { dispatch(toggleVisibility()) }}
             >
             </input>
             <div className="section">
@@ -32,18 +30,16 @@ export function BigCommunity() {
 }
 
 function PeopleProfiles() {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
+    const profiles = useSelector(state => state.profiles);
 
     useEffect(() => {
-        fetch('http://localhost:9000/community')
-            .then((response) => response.json())
-            .then((data) => setData(data))
-            .catch((error) => console.log(error))
+        dispatch(fetchThunk());
     }, []);
 
     return (
         <div className="people-profile-area">
-            {data.map((person, index) =>
+            {profiles.map((person, index) =>
                 <div key={person.lastName} className="person-profile">
                     <img src={person.avatar} height='150' width='150' alt='' />
                     <p className="person-feedback">{ALL_FEEDBACK[index]}</p>

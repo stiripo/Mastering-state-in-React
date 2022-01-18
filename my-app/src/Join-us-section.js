@@ -1,27 +1,27 @@
-import { useState } from "react";
 import { postToServer, handleResponseStatusError } from "./utils";
 import { SUBSCRIBE_URL, UNSUBSCRIBE_URL } from "./constants";
+import { useSelector, useDispatch } from 'react-redux';
+import { cancelSubscription, setSubscription } from "./redux/subscription";
+import { updateInput } from "./redux/email_input";
+import { disable, enable } from "./redux/disable_button";
 
 export function JoinUsSection() {
 
-    const [subscribeEmail, setSubscribeEmail] = useState('');
-    const [status, setStatus] = useState('not subscribed');
-    const [disabled, setDisabled] = useState(false);
-
-    const updateEmailInput = (e) => {
-        setSubscribeEmail(e.target.value);
-    }
+    const dispatch = useDispatch();
+    const subscribed = useSelector(state => state.statusSubscribed);
+    const inputEmail = useSelector(state => state.subscribeEmail);
+    const disabled = useSelector(state => state.disabled);
 
     function subscribe(e) {
         e.preventDefault();
-        setDisabled(true);
-        postToServer(SUBSCRIBE_URL, JSON.stringify({ email: subscribeEmail }))
+        dispatch(disable());
+        postToServer(SUBSCRIBE_URL, JSON.stringify({ email: inputEmail }))
             .then(handleResponseStatusError)
             .then((data) => {
                 if (!data.error) {
-                    setStatus('subscribed');
+                    dispatch(setSubscription());
                 }
-                setDisabled(false)
+                dispatch(enable())
 
             })
             .catch(window.alert)
@@ -29,10 +29,10 @@ export function JoinUsSection() {
 
     function unsubscribe(e) {
         e.preventDefault();
-        setDisabled(true);
-        postToServer(UNSUBSCRIBE_URL, JSON.stringify({ email: subscribeEmail }))
-            .then(() => setStatus('not subscribed'))
-            .then(() => setDisabled(false))
+        dispatch(disable());
+        postToServer(UNSUBSCRIBE_URL, JSON.stringify({ email: inputEmail }))
+            .then(() => dispatch(cancelSubscription()))
+            .then(() => dispatch(enable()))
     }
 
     return (
@@ -41,16 +41,16 @@ export function JoinUsSection() {
             <p className='subtitle'>Sed do eiusmod tempor incididunt <br />ut labore et dolore magna aliqua.</p>
             <form
                 className='form'
-                onSubmit={status === 'not subscribed' ? subscribe : unsubscribe}>
+                onSubmit={subscribed === false ? subscribe : unsubscribe}>
                 <input
                     type='text'
                     placeholder='Email'
-                    value={subscribeEmail}
+                    value={inputEmail}
                     className='email-input'
-                    onChange={updateEmailInput}></input>
+                    onChange={ (e) => dispatch(updateInput(e.target.value)) }></input>
                 <input
                     type='submit'
-                    value={status === 'not subscribed' ? 'Subscribe' : 'Unsubscribe'}
+                    value={subscribed ? 'Unsubscribe' : 'Subscribe'}
                     disabled={disabled}
                     className={disabled ? 'button disabled' : 'button'}></input>
             </form>
