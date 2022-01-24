@@ -1,7 +1,5 @@
-import { createAction } from '@reduxjs/toolkit';
 import { COMMUNITY_URL } from '../constants';
-
-export const uploadProfiles = createAction('PROFILES_LOADED');
+import { uploadProfiles } from './actions';
 
 export function profilesReducer(currentState = [], action) {
     switch (action.type) {
@@ -16,6 +14,6 @@ export function fetchThunk() {
         return fetch(COMMUNITY_URL)
             .then((response) => response.json())
             .then((data) => dispatch(uploadProfiles(data)))
-            .catch((error) => console.log(error))
+            .catch(console.log)
     }
 }

@@ -1,12 +1,9 @@
 import { postToServer, handleResponseStatusError } from "./utils";
 import { SUBSCRIBE_URL, UNSUBSCRIBE_URL } from "./constants";
 import { useSelector, useDispatch } from 'react-redux';
-import { cancelSubscription, setSubscription } from "./redux/subscription";
-import { updateInput } from "./redux/email_input";
-import { disable, enable } from "./redux/disable_button";
+import { cancelSubscription, setSubscription, updateInput, disable, enable } from "./redux/actions";
 
 export function JoinUsSection() {
-
     const dispatch = useDispatch();
     const subscribed = useSelector(state => state.statusSubscribed);
     const inputEmail = useSelector(state => state.subscribeEmail);
@@ -21,6 +18,7 @@ export function JoinUsSection() {
                 if (!data.error) {
                     dispatch(setSubscription());
                 }
+                dispatch(updateInput(''))
                 dispatch(enable())
 
             })
@@ -32,6 +30,7 @@ export function JoinUsSection() {
         dispatch(disable());
         postToServer(UNSUBSCRIBE_URL, JSON.stringify({ email: inputEmail }))
             .then(() => dispatch(cancelSubscription()))
+            .then(() => dispatch(updateInput('')))
             .then(() => dispatch(enable()))
     }
 

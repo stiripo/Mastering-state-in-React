@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { ALL_FEEDBACK } from "./constants";
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleVisibility } from '../src/redux/visibility';
+import { toggleVisibility } from '../src/redux/actions';
 import { fetchThunk } from "./redux/community";
 
 export function BigCommunity() {
-
     const dispatch = useDispatch();
     const visibility = useSelector(state => state.communitySectionVisibility);
 
@@ -41,7 +40,7 @@ function PeopleProfiles() {
         <div className="people-profile-area">
             {profiles.map((person, index) =>
                 <div key={person.lastName} className="person-profile">
-                    <img src={person.avatar} height='150' width='150' alt='' />
+                    <img src={person.avatar} height='150' width='150' alt="person's face" />
                     <p className="person-feedback">{ALL_FEEDBACK[index]}</p>
                     <p className="person-name">{`${person.firstName} ${person.lastName}`}</p>
                     <p className="person-position">{person.position}</p>
