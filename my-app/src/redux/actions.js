@@ -7,3 +7,4 @@ export const cancelSubscription = createAction('CANCEL_SUBSCRIPTION')
 export const disable = createAction('DISABLE_BUTTON');
 export const enable = createAction('ENABLE_BUTTON');
 export const updateInput = createAction('EMAIL_INPUT_CHANGED');
+export const loadCard = createAction('CARD_LOADED');

@@ -39,6 +39,11 @@
   margin: 0px 100px 10px;
 }
 
+.card {
+  font-family: 'Source Sans Pro';
+  margin: 40px 350px;
+}
+
 .hidden {
   display: none;
 }
@@ -115,4 +120,23 @@
 
 .disabled {
   opacity: 0.5;
+}
+
+.not-found-block {
+  padding: 30px 50px 70px;
+  max-width: 750px;
+  font-family: 'Source Sans Pro';
+  background-color: rgb(223, 225, 235);
+}
+
+.link-to-home {
+  color: #55c2d8;
+}
+
+.not-found-title {
+  font-size: 40px;
+}
+
+.not-found-text {
+  font-size: 18px;
 }

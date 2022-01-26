@@ -1,6 +1,7 @@
 export const SUBSCRIBE_URL = 'http://localhost:9000/subscribe';
 export const UNSUBSCRIBE_URL = 'http://localhost:9000/unsubscribe';
 export const COMMUNITY_URL = 'http://localhost:9000/community';
+export const COMMUNITY_ID_URL = 'http://localhost:9000/community/:id';
 
 const FEEDBACK_1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor.';
 const FEEDBACK_2 = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.';
