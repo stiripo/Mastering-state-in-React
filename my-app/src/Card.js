@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ALL_FEEDBACK } from "./constants";
 import { cardFetchThunk } from "./redux/card";
 import { COMMUNITY_URL } from "./constants";
+import { removeCard } from "./redux/actions";
 
 
 export function Card() {
@@ -12,6 +13,9 @@ export function Card() {
 
     useEffect(() => {
         dispatch(cardFetchThunk(`${COMMUNITY_URL}/${personId}`));
+        return function cleanup() {
+            dispatch(removeCard());
+        }
     }, []);
 
     const profile = useSelector(state => state.profileCard);

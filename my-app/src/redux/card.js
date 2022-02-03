@@ -4,9 +4,13 @@ export function cardReducer(currentState = {}, action) {
     switch (action.type) {
         case 'CARD_LOADED':
             return action.payload;
+        case 'REMOVE_CARD':
+            return {};
         default: return currentState;
     }
 }
+
+
 export function cardFetchThunk(my_url) {
     return (dispatch, getState) => {
         let data;
