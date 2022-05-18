@@ -1,5 +1,5 @@
-import { COMMUNITY_URL } from '../constants';
 import { uploadProfiles } from './actions';
+import { PROFILES_URL } from '../constants';
 
 export function profilesReducer(currentState = [], action) {
     switch (action.type) {
@@ -11,7 +11,7 @@ export function profilesReducer(currentState = [], action) {
 
 export function fetchThunk() {
     return (dispatch, getState) => {
-        return fetch(COMMUNITY_URL)
+        return fetch(PROFILES_URL)
             .then((response) => response.json())
             .then((data) => dispatch(uploadProfiles(data)))
             .catch(console.log)

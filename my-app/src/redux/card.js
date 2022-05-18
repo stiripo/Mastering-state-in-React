@@ -10,7 +10,6 @@ export function cardReducer(currentState = {}, action) {
     }
 }
 
-
 export function cardFetchThunk(my_url) {
     return (dispatch, getState) => {
         let data;

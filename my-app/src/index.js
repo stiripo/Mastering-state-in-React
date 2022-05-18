@@ -1,3 +1,4 @@
+import './server';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { disableReducer } from './redux/disable_button';
 import { cardReducer } from './redux/card';
 import { combineReducers } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
+
 
 const allReducers = combineReducers(
   {

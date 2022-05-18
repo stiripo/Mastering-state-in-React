@@ -6,7 +6,6 @@ import { cardFetchThunk } from "./redux/card";
 import { COMMUNITY_URL } from "./constants";
 import { removeCard } from "./redux/actions";
 
-
 export function Card() {
     const dispatch = useDispatch();
     const { personId } = useParams();
