@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "//Mastering-state-in-React/static/css/main.d20e24df.css",
-    "main.js": "//Mastering-state-in-React/static/js/main.25ca13e2.js",
-    "static/media/join-our-program.png": "//Mastering-state-in-React/static/media/join-our-program.db9ceca720fce3ff3b73.png",
-    "index.html": "//Mastering-state-in-React/index.html",
-    "main.d20e24df.css.map": "//Mastering-state-in-React/static/css/main.d20e24df.css.map",
-    "main.25ca13e2.js.map": "//Mastering-state-in-React/static/js/main.25ca13e2.js.map"
+    "main.css": "/Mastering-state-in-React/static/css/main.0ab1efc9.css",
+    "main.js": "/Mastering-state-in-React/static/js/main.25ca13e2.js",
+    "static/media/join-our-program.png": "/Mastering-state-in-React/static/media/join-our-program.db9ceca720fce3ff3b73.png",
+    "index.html": "/Mastering-state-in-React/index.html",
+    "main.0ab1efc9.css.map": "/Mastering-state-in-React/static/css/main.0ab1efc9.css.map",
+    "main.25ca13e2.js.map": "/Mastering-state-in-React/static/js/main.25ca13e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.d20e24df.css",
+    "static/css/main.0ab1efc9.css",
     "static/js/main.25ca13e2.js"
   ]
 }
